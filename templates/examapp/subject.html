@@ -1,0 +1,115 @@
+<style>
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Profile Container */
+.profile-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Profile Image Block */
+.profile-image {
+  margin-bottom: 20px;
+}
+
+.profile-image img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #2575fc;
+}
+
+/* Select Dropdown Styling */
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+select:focus {
+  border-color: #2575fc;
+  outline: none;
+}
+
+/* Submit Button Styling */
+input[type="submit"] {
+  background-color: #2575fc;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #6a11cb;
+  transform: translateY(-2px);
+}
+
+input[type="submit"]:active {
+  transform: translateY(2px);
+}
+
+/* Optional Styling for the Options in Dropdown */
+option {
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+</style>
+{% load static %}
+<div class="profile-container">
+    <!-- Profile Image Block -->
+    <div class="profile-image">
+        <img src="{% static imagepath %}" alt="user image">
+    </div>
+
+    <!-- Form Block -->
+    <form action="">
+        <select name="subject">
+            {% for dictionary in queryset %}
+                {% for keys, values in dictionary.items %}
+                    <option>{{values}}</option>
+                {% endfor %}
+            {% endfor %}
+        </select>
+        
+        <input type="submit" value="Start Test" formaction="/examapp/startTest/" formmethod="get">
+    </form>
+</div>
+

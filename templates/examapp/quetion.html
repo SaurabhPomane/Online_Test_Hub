@@ -1,0 +1,207 @@
+<html>
+
+<head>
+    <style>
+         
+        /* Reset default margins and paddings */
+        body, h1, p, form {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Form container styling */
+        form {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 60%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        /* Styling for the remaining time display */
+        .time {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            
+
+        }
+
+        .time input {
+            
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #f8f8f8;
+            border: opx none #ccc;
+            border-radius: 4px;
+            padding: 5px;
+            width: 100px;
+            text-align: center;
+        }
+
+        /* Question inputs styling */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            font-size: 16px;
+        }
+
+        /* Radio button styling */
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        span {
+            font-size: 16px;
+            color: #333;
+            margin-right: 20px;
+        }
+
+        /* Submit button styling */
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Error message styling */
+        span[style="color: red;"] {
+            font-size: 14px;
+            color: red;
+            text-align: center;
+            display: block;
+            margin-top: 20px;
+        }
+
+        /* Responsive styling for smaller devices */
+        @media (max-width: 768px) {
+            form {
+                width: 90%;
+            }
+            .time input {
+                width: 80px;
+            }
+            input[type="submit"] {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    
+    </style>
+    <script>
+
+    var xmlhttp;
+
+	function getRemainingTime()
+	{
+		xmlhttp= new XMLHttpRequest();
+
+		xmlhttp.onload=showtime;
+		
+		xmlhttp.open("get","/examapp/showRemainingTime/",true);
+		
+		xmlhttp.send();
+		
+	}
+
+	function showtime()
+	{
+		
+		//alert(xmlhttp.responseText);
+		
+		if(xmlhttp.readyState==4 && xmlhttp.status==200){
+
+            var timetodisplay=xmlhttp.responseText
+            var minute=Math.floor(timetodisplay/60) 
+            var seconds=timetodisplay%60
+			document.questionform.show.value=minute + ":" + seconds;
+			
+			if(xmlhttp.responseText==0)
+			{
+				alert("Time Up !!")
+				//xmlhttp.open("get","endexam",true);
+				window.location.href="/examapp/endexam/";
+			}
+			
+			
+		}
+	}
+
+	
+	setInterval(getRemainingTime,1000);// 1000 ms - 1 sec  60000ms - 60sec
+
+</script>
+
+</head>
+<body>
+
+ <h2 style="text-align: center;"> Your Exam Will Be Start Now</h2>   
+<form name="questionform">
+
+<span class="time">    
+Remaining time :-  <input name="show" type="text" value="3 minutes">
+</span>
+
+Quetion Number:-<input type="text" name="qno" value="{{quetion.qno}}"> <br><br>
+        
+Quetion:-<input type="text" name="qtext" value="{{quetion.gtext}}"><br><br>
+
+<input type="hidden" name="answer" value="{{quetion.answer}}"><br>
+
+<input type="radio" name="op" value="{{quetion.op1}}" {% if previousanswer == quetion.op1 %} checked {% endif %}> <span> {{quetion.op1}} </span>
+
+<input type="radio" name="op" value="{{quetion.op2}}" {% if previousanswer == quetion.op2 %} checked {% endif %}> <span> {{quetion.op2}} </span>
+
+<input type="radio" name="op" value="{{quetion.op3}}" {% if previousanswer == quetion.op3 %} checked {% endif %}> <span> {{quetion.op3}} </span>
+
+<input type="radio" name="op" value="{{quetion.op4}}" {% if previousanswer == quetion.op4 %} checked {% endif %}> <span> {{quetion.op4}} </span>
+
+<br><br>
+
+<input type="submit" value="next" formaction="/examapp/nextQuetion/"> 
+
+<input type="submit" value="previous" formaction="/examapp/previousQuetion/"> 
+
+<input type="submit" value="endexam" formaction="/examapp/endexam/">
+
+</form>
+
+
+
+<span style="color: red;">  {{message}} </span>
+
+
+</body>
+
+</html>

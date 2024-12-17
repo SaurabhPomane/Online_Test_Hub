@@ -1,0 +1,109 @@
+<style>
+    /* Basic reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Overall form styling */
+form {
+    max-width: 700px; /* Set a max width for the form */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 20px;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background color */
+    font-family: Arial, sans-serif;
+}
+
+/* Style for form labels (if you want to add labels) */
+input {
+    width: 100%; /* Make inputs take full width */
+    padding: 10px;
+    margin-bottom: 15px; /* Space between inputs */
+    border: 1px solid #ccc;
+    border-radius: 6px; /* Slightly rounded corners for input fields */
+    font-size: 14px;
+}
+
+input:focus {
+    border-color: #007bff; /* Blue border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+input[type="submit"] {
+    width: 20%; /* Make submit buttons fit neatly in the form */
+    padding: 10px;
+    background-color: #007bff; /* Blue background for submit buttons */
+    color: white; /* White text color */
+    border: none;
+    border-radius: 8px; /* Rounded corners for buttons */
+    font-size: 14px;
+    cursor: pointer; /* Change cursor to pointer on hover */
+    margin-top: 0px;
+    margin-right: 2%;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Style for the last submit button */
+input[type="submit"]:last-child {
+    margin-right: 0;
+}
+
+/* Error message styling */
+span {
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+    color: red;
+    font-size: 14px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    form {
+        padding: 15px;
+        width: 90%; /* Make form take 90% of screen width on small screens */
+    }
+
+    input[type="submit"] {
+        width: 100%; /* Stack buttons on smaller screens */
+        margin-right: 0;
+    }
+}
+
+</style>
+
+
+<form onsubmit="return confirm('do you want to continue')">
+    <h3>admin panel</h3><br>
+
+    <input placeholder="qno"     name="qno"    value="{{quetion.qno}}"> 
+    <input placeholder="quetion" name="qtext"  value="{{quetion.gtext}}"> 
+    <input placeholder="answer"  name="answer" value="{{quetion.answer}}"> 
+    
+    <input placeholder="op1"     name="op1"     value="{{quetion.op1}}" > 
+    <input placeholder="op2"     name="op2"     value="{{quetion.op2}}" > 
+    <input placeholder="op3"     name="op3"     value="{{quetion.op3}}" > 
+    <input placeholder="op4"     name="op4"     value="{{quetion.op4}}" > 
+    <input placeholder="subject" name="subject" value="{{quetion.subject}}">
+    <br><br>
+    
+    <input type="submit" value="addQuetion" formaction="/examapp/addQuetion/">
+    
+    <input type="submit" value="viewQuetion" formaction="/examapp/viewQuetion/">
+    
+    <input type="submit"  value="updateQuetion" formaction="/examapp/updateQuetion/">
+   
+    <input type="submit" value="deleteQuetion" formaction="/examapp/deleteQuetion/"><br>
+     
+<a href="/examapp/giveMePage3"> go to admin dashboard </a>
+  
+    
+    </form>
+    <span >{{message}}</span>
+

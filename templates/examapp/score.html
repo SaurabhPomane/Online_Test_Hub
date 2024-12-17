@@ -1,0 +1,93 @@
+<style>
+/* Global Reset for table borders and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Table headers */
+th {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-size: 16px;
+  border: 1px solid #ddd;
+}
+
+/* Table data */
+td {
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+/* Hover effect for rows */
+tr:hover {
+  background-color: #f1f1f1;
+  transition: background-color 0.3s ease;
+}
+
+/* Styling for the score and username message */
+span {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* Optional: Table styling for better readability */
+td, th {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: center;
+}
+
+
+    
+</style>
+
+</head>
+
+
+<span style="color: red; font-size: large;"> {{username}} , your score is {{score}} </span>
+
+
+<table>
+
+   <tr>
+    <th>Qno</th>
+    <th>Question</th>
+    <th>Correct Answer</th>
+    <th>Your Answer</th>
+  </tr>
+
+    {% for list in listoflist %}
+
+        <tr>
+                <td> {{list.0}} </td>
+                <td> {{list.1}} </td>
+                <td> {{list.2}} </td>
+                <td> {{list.3}} </td>
+
+        </tr>
+
+    {% endfor %}
+
+</table>

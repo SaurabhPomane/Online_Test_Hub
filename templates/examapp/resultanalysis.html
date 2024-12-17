@@ -1,0 +1,105 @@
+
+<style>
+    /* Basic styling for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style for the header */
+h1 {
+    text-align: center;
+    color: #007BFF;
+    margin-top: 50px;
+}
+
+/* Styling for the form */
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+/* Styling for the input fields */
+input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+/* Styling for the submit button */
+input[type="submit"] {
+    width: 320px;
+    padding: 12px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect on the submit button */
+input[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+/* Focus effect on the input field */
+input[type="text"]:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Admin dashboard link styling (Box Type) */
+.admin-dashboard-link {
+    display: inline-block;
+    margin-top: 40px; /* Space between the table and the link */
+    padding: 9px 10px;
+    background-color: #007bff; /* Blue background */
+    color: white;
+    text-decoration: none; /* Remove underline */
+    border: 2px solid #007bff; /* Border around the link */
+    border-radius: 10px; /* Rounded corners */
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover effect for the admin dashboard link */
+.admin-dashboard-link:hover {
+    background-color: white; /* White background on hover */
+    color: #007bff; /* Blue text on hover */
+    border-color: #0056b3; /* Darker border color */
+}
+
+</style>
+<h1> Result Analysis</h1>
+
+
+
+<form>
+
+    <input type="text" name="subject" placeholder="enter subject">
+    
+    <input type="submit" value="search" formaction="/examapp/search1/">
+  
+    
+</form>
+
+
+
+<a href="/examapp/giveMePage3" class="admin-dashboard-link">Go to Admin Dashboard</a>
+
